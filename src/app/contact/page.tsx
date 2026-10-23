@@ -124,6 +124,7 @@ export default function ContactPage() {
                       className="w-full bg-background border border-border rounded-md px-4 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent text-foreground"
                     >
                       <option value="General Enquiry">General Enquiry</option>
+                      <option value="Certificate of Analysis (COA) Request">Certificate of Analysis (COA) Request</option>
                       <option value="Order Support">Order Support</option>
                       <option value="Product Information">Product Information</option>
                       <option value="Wholesale/Bulk Enquiry">Wholesale/Bulk Enquiry</option>

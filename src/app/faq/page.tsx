@@ -12,6 +12,7 @@ export default function FAQPage() {
         { q: "Are your products for research purposes only?", a: "Yes. All products sold by X Factor Peptides are strictly for laboratory and scientific research purposes only. They are not intended for human consumption, veterinary use, or any other purpose." },
         { q: "How should research peptides be stored?", a: "For long-term storage, lyophilised peptides should be kept at -20°C. They can be stored refrigerated at 4°C for short periods. Protect all compounds from light and moisture." },
         { q: "What purity standards do you maintain?", a: "We only stock products that have been verified to meet a minimum purity standard of 98%, with many exceeding 99% purity via HPLC." },
+        { q: "Can I receive a Certificate of Analysis (COA) for my order or compound?", a: "Yes. Certificates of Analysis (COAs) from independent third-party laboratory testing can be provided upon request for any of our research compounds. Simply contact our support team with your order or compound details, and we will supply the verified batch report." },
       ]
     },
     {

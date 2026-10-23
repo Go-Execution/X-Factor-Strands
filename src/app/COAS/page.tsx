@@ -1,81 +1,117 @@
 "use client";
 import * as React from 'react';
+import Link from 'next/link';
 import { Header } from '@/components/shared/Header';
 import { Footer } from '@/components/shared/Footer';
-import { FileText, Download, Eye } from 'lucide-react';
+import { FileCheck, ShieldCheck, Mail, ArrowRight, Clock, FlaskConical, CheckCircle2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export default function COAsPage() {
-  const coas = [
-    { title: "5-Amino 1MQ", file: "5-Amino 1MQ.pdf" },
-    { title: "AOD-9604 5mg", file: "AOD-9604 5mg.pdf" },
-    { title: "ARA-290 10mg", file: "ARA-290 10mg (1).pdf" },
-    { title: "BPC-157 10mg", file: "BPC-157 10mg.pdf" },
-    { title: "BPC-157 TB-500 10mg", file: "BPC-157 TB-500 10mg.pdf" },
-    { title: "CJC-1295 (No DAC) Ipamorelin", file: "CJC-1295 (No DAC) Ipamorelin 5mg 5mg.pdf" },
-    { title: "DSIP 15mg", file: "DSIP 15mg.pdf" },
-    { title: "Epitalon 10mg", file: "Epitalon 10mg.pdf" },
-    { title: "GHK-CU 100mg", file: "GHK-CU 100mg.pdf" },
-    { title: "GLOW PRO 70mg", file: "GLOW PRO 70mg.pdf" },
-    { title: "IGF-LR3", file: "IGF-LR3.pdf" },
-    { title: "Ipamorelin CJC-1295", file: "Ipamorelin CJC-1295.pdf" },
-    { title: "KPV", file: "KPV COA-CN.pdf" },
-    { title: "Kisspeptin 10mg", file: "Kisspeptin 10mg.pdf" },
-    { title: "MOTS-40 40mg", file: "MOTS-40 40mg.pdf" },
-    { title: "MT-2 10mg", file: "MT-2 10mg (2).pdf" },
-    { title: "Retatrutide 20mg", file: "Retatrutide 20mg.pdf" },
-    { title: "Retatrutide", file: "Retatrutide-1.pdf" },
-    { title: "SLU-PP-332", file: "SLU-PP-332.pdf" },
-    { title: "SS-31 50mg", file: "SS-31 50mg.pdf" },
-    { title: "Selank 10mg", file: "Selank 10mg.pdf" },
-    { title: "Semaglutide", file: "Semaglutide.pdf" },
-    { title: "Sermorelin 10mg", file: "Sermorelin 10mg.pdf" },
-    { title: "Tesamorelin 20mg", file: "Tesamorelin 20mg.pdf" },
-    { title: "Tirzepatide 20mg", file: "Tirzepatide 20mg.pdf" },
-  ];
-
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <Header />
       
-      <main className="flex-grow pt-24 pb-20">
-        <div className="container mx-auto px-4 lg:px-8 max-w-5xl">
-          <div className="text-center mb-16 mt-8">
-            <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">Certificates of Analysis (COA)</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Confidence backed by independent testing. Verified Purity with Every Batch.
-              Each product includes a detailed Certificate of Analysis (COA) from an independent third-party laboratory.
+      <main className="flex-grow pt-28 pb-20">
+        <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
+          {/* Header section */}
+          <div className="text-center mb-12 mt-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold uppercase tracking-wider mb-4 border border-accent/20">
+              <ShieldCheck className="w-3.5 h-3.5" />
+              <span>Independent Verification & Quality</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 tracking-tight">
+              Certificates of Analysis (COA)
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Every compound in our catalogue undergoes rigorous third-party analytical testing. Batch-specific Certificates of Analysis are readily provided upon request.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {coas.map((coa, idx) => (
-              <div key={idx} className="bg-card border border-border rounded-xl p-6 flex flex-col items-center text-center hover:border-accent transition-all duration-300 shadow-sm hover:shadow-[0_0_15px_rgba(11,95,255,0.1)] group">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                  <FileText className="w-8 h-8 text-primary" />
+
+          {/* Main Card */}
+          <div className="bg-card border border-border rounded-2xl p-8 md:p-12 shadow-xl mb-12 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-0 pointer-events-none" />
+
+            <div className="relative z-10">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 mb-8 pb-8 border-b border-border/60">
+                <div className="w-16 h-16 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 text-accent">
+                  <FileCheck className="w-8 h-8" />
                 </div>
-                <h3 className="font-display text-xl font-bold mb-6 flex-grow">{coa.title}</h3>
-                
-                <div className="flex gap-3 w-full">
-                  <a 
-                    href={`/docs/${encodeURIComponent(coa.file)}`} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 border border-secondary text-secondary py-2 rounded-md hover:bg-secondary/10 transition-colors"
-                  >
-                    <Eye className="w-4 h-4" />
-                    <span>View</span>
-                  </a>
-                  <a 
-                    href={`/docs/${encodeURIComponent(coa.file)}`} 
-                    download
-                    className="flex-1 flex items-center justify-center gap-2 bg-primary text-primary-foreground py-2 rounded-md hover:bg-primary/90 transition-colors"
-                  >
-                    <Download className="w-4 h-4" />
-                    <span>Download</span>
-                  </a>
+                <div>
+                  <h2 className="text-2xl font-display font-bold text-foreground">
+                    Available Upon Request for Every Batch
+                  </h2>
+                  <p className="text-muted-foreground text-sm mt-1">
+                    To ensure researchers receive exact lot-matched testing reports, Certificates of Analysis are delivered on demand for all research orders and compound inquiries.
+                  </p>
                 </div>
               </div>
-            ))}
+
+              {/* Steps / Details Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                <div className="bg-background/80 border border-border/80 rounded-xl p-5">
+                  <div className="flex items-center gap-2 text-accent font-semibold text-sm mb-2">
+                    <FlaskConical className="w-4 h-4" />
+                    <span>1. Batch Matched</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Tested via High-Performance Liquid Chromatography (HPLC) and Mass Spectrometry (MS) to verify ≥98% purity.
+                  </p>
+                </div>
+
+                <div className="bg-background/80 border border-border/80 rounded-xl p-5">
+                  <div className="flex items-center gap-2 text-accent font-semibold text-sm mb-2">
+                    <Mail className="w-4 h-4" />
+                    <span>2. Simple Request</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Provide your compound name or order number through our contact form or via email to request testing data.
+                  </p>
+                </div>
+
+                <div className="bg-background/80 border border-border/80 rounded-xl p-5">
+                  <div className="flex items-center gap-2 text-accent font-semibold text-sm mb-2">
+                    <Clock className="w-4 h-4" />
+                    <span>3. Rapid Turnaround</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground leading-relaxed">
+                    Our team provides the verified independent laboratory documentation within 24 business hours.
+                  </p>
+                </div>
+              </div>
+
+              {/* Key Assurances */}
+              <div className="space-y-3 mb-10 bg-accent/5 border border-accent/15 rounded-xl p-6 text-sm">
+                <h3 className="font-semibold text-foreground flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-accent" />
+                  What Each COA Includes:
+                </h3>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-muted-foreground text-xs pl-6 list-disc">
+                  <li>HPLC Chromatogram & Purity Percentage</li>
+                  <li>Mass Spectrometry (MS) Molecular Weight Confirmation</li>
+                  <li>Lot & Batch Identification Number</li>
+                  <li>Gross & Net Peptide Content Verification</li>
+                  <li>Synthesis Date & Storage Stability Specifications</li>
+                  <li>Independent Third-Party Laboratory Certification</li>
+                </ul>
+              </div>
+
+              {/* Call to action buttons */}
+              <div className="flex flex-col sm:flex-row items-center gap-4">
+                <Link href="/contact" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white font-medium shadow-[0_0_20px_rgba(11,95,255,0.3)]">
+                    Request a COA <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </Link>
+                <Link href="/shop" className="w-full sm:w-auto">
+                  <Button variant="outline" size="lg" className="w-full sm:w-auto border-border hover:bg-card">
+                    Browse Research Products
+                  </Button>
+                </Link>
+                <span className="text-xs text-muted-foreground sm:ml-auto">
+                  Direct email: <a href="mailto:info@xfactorpeps.com" className="text-accent underline">info@xfactorpeps.com</a>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </main>

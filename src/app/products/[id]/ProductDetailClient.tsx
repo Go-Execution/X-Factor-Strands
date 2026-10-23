@@ -8,7 +8,7 @@ import { Footer } from '@/components/shared/Footer';
 import { Product, ProductCard } from '@/components/products/ProductData';
 import Image from 'next/image';
 import Link from 'next/link';
-import { AlertTriangle, ChevronLeft, Star } from 'lucide-react';
+import { AlertTriangle, ChevronLeft, Star, FileCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCartStore } from '@/store/useCartStore';
 import { toast } from 'sonner';
@@ -153,6 +153,16 @@ export function ProductDetailClient({ productId }: { productId: string }) {
                     <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Molecular Weight</p>
                     <p className="font-mono font-medium">{product.specs.mw}</p>
                   </div>
+                </div>
+
+                <div className="mt-3 p-3 bg-card/60 border border-border/80 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                    <FileCheck className="w-4 h-4 text-accent shrink-0" />
+                    <span>Independent batch testing verified. <strong>Certificate of Analysis (COA)</strong> provided upon request.</span>
+                  </div>
+                  <Link href="/contact" className="text-accent hover:underline font-medium shrink-0">
+                    Request COA &rarr;
+                  </Link>
                 </div>
               </div>
 
