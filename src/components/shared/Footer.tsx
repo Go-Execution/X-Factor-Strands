@@ -78,16 +78,16 @@ export function Footer() {
             <h3 className="font-display font-semibold text-foreground mb-6">Research Areas</h3>
             <ul className="space-y-3">
               {[
-                'Metabolic & Lipid Research',
-                'Tissue Regeneration & Repair',
-                'Cellular & Musculoskeletal Pathways',
-                'Circadian & Neuro-Receptor Research',
-                'Cognitive & Neuro-Signaling',
-                'Mitochondrial & Energy Metabolism',
+                { name: 'Metabolic & Lipid Research', cat: 'Metabolic & Lipid Research' },
+                { name: 'Tissue Regeneration & Repair', cat: 'Tissue Regeneration & Repair' },
+                { name: 'Musculoskeletal & Cellular Dynamics', cat: 'Musculoskeletal & Cellular Dynamics' },
+                { name: 'Sleep & Circadian Research', cat: 'Sleep' },
+                { name: 'Focus & Cognitive Peptides', cat: 'Focus & Cognitive' },
+                { name: 'Energy & Mitochondrial Research', cat: 'Energy' },
               ].map((area) => (
-                <li key={area}>
-                  <Link href="/shop" className="text-muted-foreground text-sm hover:text-accent transition-colors">
-                    {area}
+                <li key={area.name}>
+                  <Link href={`/shop?category=${encodeURIComponent(area.cat)}`} className="text-muted-foreground text-sm hover:text-accent transition-colors">
+                    {area.name}
                   </Link>
                 </li>
               ))}

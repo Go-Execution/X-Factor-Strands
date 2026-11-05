@@ -185,21 +185,23 @@ export default function HomePage() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { title: 'Metabolic & Lipid Research', icon: Activity, desc: 'Peptide compounds studied for metabolic pathways, insulin sensitivity, and lipid regulation in laboratory settings.' },
-                { title: 'Tissue Regeneration & Repair', icon: Dumbbell, desc: 'Research compounds exploring extracellular matrix restoration, tissue repair, and cellular regeneration mechanisms.' },
-                { title: 'Musculoskeletal & Cellular Dynamics', icon: Zap, desc: 'Laboratory peptides investigated for amino acid transport, muscular peptide signalling, and cellular resilience.' },
-                { title: 'Sleep Research', icon: Moon, desc: 'Compounds investigated for their role in circadian rhythm regulation and sleep architecture.' },
-                { title: 'Focus & Cognitive', icon: Brain, desc: 'Peptides studied for neurological pathways associated with cognitive function and focus.' },
-                { title: 'Energy Research', icon: Battery, desc: 'Research compounds explored for their role in mitochondrial function and energy metabolism.' },
+                { title: 'Metabolic & Lipid Research', cat: 'Metabolic & Lipid Research', icon: Activity, desc: 'Peptide compounds studied for metabolic pathways, insulin sensitivity, and lipid regulation in laboratory settings.' },
+                { title: 'Tissue Regeneration & Repair', cat: 'Tissue Regeneration & Repair', icon: Dumbbell, desc: 'Research compounds exploring extracellular matrix restoration, tissue repair, and cellular regeneration mechanisms.' },
+                { title: 'Musculoskeletal & Cellular Dynamics', cat: 'Musculoskeletal & Cellular Dynamics', icon: Zap, desc: 'Laboratory peptides investigated for amino acid transport, muscular peptide signalling, and cellular resilience.' },
+                { title: 'Sleep Research', cat: 'Sleep', icon: Moon, desc: 'Compounds investigated for their role in circadian rhythm regulation and sleep architecture.' },
+                { title: 'Focus & Cognitive', cat: 'Focus & Cognitive', icon: Brain, desc: 'Peptides studied for neurological pathways associated with cognitive function and focus.' },
+                { title: 'Energy Research', cat: 'Energy', icon: Battery, desc: 'Research compounds explored for their role in mitochondrial function and energy metabolism.' },
               ].map((cat, i) => (
-                <motion.div variants={itemVariants} key={i} className="bg-background border border-border rounded-xl p-8 group hover:-translate-y-1 hover:border-accent/50 transition-all duration-300">
-                  <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform">
-                    <cat.icon className="w-6 h-6" />
+                <motion.div variants={itemVariants} key={i} className="bg-background border border-border rounded-xl p-8 group hover:-translate-y-1 hover:border-accent/50 transition-all duration-300 flex flex-col justify-between">
+                  <div>
+                    <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform">
+                      <cat.icon className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-xl font-display font-semibold mb-3">{cat.title}</h3>
+                    <p className="text-muted-foreground text-sm mb-6 line-clamp-3">{cat.desc}</p>
                   </div>
-                  <h3 className="text-xl font-display font-semibold mb-3">{cat.title}</h3>
-                  <p className="text-muted-foreground text-sm mb-6 line-clamp-3">{cat.desc}</p>
-                  <Link href="/shop" className="text-secondary font-medium text-sm flex items-center hover:text-accent transition-colors">
-                    Explore <ArrowRight className="ml-1 w-4 h-4" />
+                  <Link href={`/shop?category=${encodeURIComponent(cat.cat)}`} className="text-secondary font-medium text-sm flex items-center hover:text-accent transition-colors mt-auto">
+                    Explore Category <ArrowRight className="ml-1 w-4 h-4" />
                   </Link>
                 </motion.div>
               ))}
