@@ -22,6 +22,9 @@ export function ResearchGateModal() {
   const handleConfirm = () => {
     try {
       localStorage.setItem('xfactor_research_verified', 'true');
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new Event('xfactor_research_verified'));
+      }
     } catch {
       // ignore
     }

@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import { motion , Variants} from 'framer-motion';
 import { Header } from '@/components/shared/Header';
+import { MaintenanceModal } from '@/components/shared/MaintenanceModal';
 import { Footer } from '@/components/shared/Footer';
 import { TheStrand } from '@/components/shared/TheStrand';
 import { VialIllustration } from '@/components/illustrations/VialIllustration';
@@ -58,6 +59,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-secondary/30">
       <Header />
+      <MaintenanceModal />
       <TheStrand sections={SECTIONS} />
       
       <main className="md:pl-32 lg:pl-48">

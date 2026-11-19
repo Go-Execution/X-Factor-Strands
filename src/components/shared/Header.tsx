@@ -38,6 +38,7 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [showMaintenanceBanner, setShowMaintenanceBanner] = useState(true);
   const [showPromoBanner, setShowPromoBanner] = useState(true);
   const [activePromoIdx, setActivePromoIdx] = useState(0);
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
@@ -46,6 +47,14 @@ export function Header() {
 
   useEffect(() => {
     setMounted(true);
+    try {
+      const isClosed = sessionStorage.getItem('xfactor_maintenance_banner_closed');
+      if (isClosed === 'true') {
+        setShowMaintenanceBanner(false);
+      }
+    } catch {
+      // ignore
+    }
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -87,8 +96,50 @@ export function Header() {
             : 'bg-background/90 backdrop-blur-sm border-border/50'
         )}
       >
-        {/* Top Promo Announcement Bar */}
-        {showPromoBanner && (
+        {/* Top Announcement Bar */}
+        {showMaintenanceBanner ? (
+          <div className="bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 text-slate-950 text-xs sm:text-sm py-2 px-3 sm:px-6 border-b border-amber-600/30 relative overflow-hidden shadow-inner font-medium">
+            <div className="container mx-auto flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2 overflow-hidden flex-1 justify-center sm:justify-start">
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/15 text-slate-950 text-[10px] sm:text-xs font-bold border border-black/20 shrink-0 uppercase tracking-wider">
+                  🚧 Under Maintenance
+                </span>
+                <span className="truncate text-slate-950 font-medium">
+                  We&apos;re working behind the scenes — <strong className="font-bold">Good news! We&apos;re still accepting orders through our website.</strong>
+                </span>
+                <button
+                  type="button"
+                  onClick={() => window.dispatchEvent(new CustomEvent('open-maintenance-modal'))}
+                  className="hidden md:inline text-xs font-bold underline hover:text-black shrink-0 cursor-pointer ml-1"
+                >
+                  View Details
+                </button>
+              </div>
+
+              <div className="flex items-center gap-2 shrink-0">
+                <Link
+                  href="/shop"
+                  className="hidden sm:inline-flex items-center gap-1 text-xs font-bold bg-slate-950 hover:bg-black text-amber-300 px-3 py-1 rounded transition-colors shadow-sm"
+                >
+                  Shop Now &rarr;
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowMaintenanceBanner(false);
+                    try {
+                      sessionStorage.setItem('xfactor_maintenance_banner_closed', 'true');
+                    } catch {}
+                  }}
+                  className="p-1 rounded hover:bg-black/15 text-slate-950/80 hover:text-slate-950 transition-colors cursor-pointer"
+                  aria-label="Close maintenance announcement"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : showPromoBanner && (
           <div className="bg-gradient-to-r from-accent/90 via-primary/95 to-accent/90 text-white text-xs sm:text-sm py-2 px-3 sm:px-6 border-b border-white/10 relative overflow-hidden shadow-inner">
             <div className="container mx-auto flex items-center justify-between gap-2">
               <div className="flex items-center gap-2 overflow-hidden flex-1 justify-center sm:justify-start">
